@@ -16,8 +16,8 @@ let btn = document.querySelector('#btn')
 btn.addEventListener('click', function(){
 
     getData()
-    .then(data => {
-        document.querySelector('#data').innerHTML += `<p>${data.people}</p>`
+    .then(data => { // this has to be used as the function is return a promise
+        document.querySelector('#data').innerHTML += `<li>${data.people}</li>`
         
     })
     
