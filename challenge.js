@@ -61,7 +61,7 @@ function writeToDocument(url){
             tableRows.push(`<tr>${dataRow}</tr>`)
         })
 
-        document.querySelector('#data').innerHTML = `<table>${tableHeaders}${tableRows}</table> ${pagination === undefined ? '': pagination}`
+        document.querySelector('#data').innerHTML = `<table>${tableHeaders}${tableRows}</table> ${pagination === undefined ? '': pagination}`.replace(/,/g,'')
         
     })
 
