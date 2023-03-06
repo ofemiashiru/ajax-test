@@ -22,6 +22,9 @@ function getTableHeaders(obj){
 }
 
 function writeToDocument(type){
+
+    let tableRows = []
+
     document.querySelector('#data').innerHTML = '' // empty div before new list
 
     getData(type)
@@ -29,11 +32,21 @@ function writeToDocument(type){
         let allData = data.results
         let tableHeaders = getTableHeaders(allData[0])
 
-        allData.map((each)=>{
-            // return  document.querySelector('#data').innerHTML += `<p>${each.name}</p>`
+        allData.forEach((item)=>{
+            let dataRow = []
+            
+            Object.values(item).forEach((value)=>{
+                let rowData = value.toString()
+                let truncatedData = rowData.substring(0, 15)
+                dataRow.push(`<td>${truncatedData}</td>`)
+            
+            })
+
+            tableRows.push(`<tr>${dataRow}</tr>`)
         })
 
-        document.querySelector('#data').innerHTML = `<table>${tableHeaders}</table>`
+        document.querySelector('#data').innerHTML = `<table>${tableHeaders}${tableRows}</table>`
+        
     })
 
 }
