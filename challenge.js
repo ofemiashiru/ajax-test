@@ -20,7 +20,7 @@ function getTableHeaders(obj){
     return `<tr>${tableHeaders}</tr>`
 }
 
-/** */
+/** Creates pagination if the next or prev properties are available in the data*/
 function generatePaginationBtns(next, prev){
     if(next && prev){
         return `
@@ -46,7 +46,6 @@ function writeToDocument(url){
         if(data.next || data.previous ){ // if previous and next properties exist then generate pagination 
             pagination = generatePaginationBtns(data.next, data.previous)
         }
-        console.log(data)
         let tableHeaders = getTableHeaders(allData[0])
 
         allData.forEach((item)=>{
@@ -74,9 +73,9 @@ let buttons = document.querySelectorAll('button')
 
 buttons.forEach((button)=>{
     button.addEventListener('click', function(){
+        let endPoint = "https://ci-swapi.herokuapp.com/api/"
+        let type = this.getAttribute('data-type')
 
-        let url = this.getAttribute('data-url')
-
-        writeToDocument(url)
+        writeToDocument(`${endPoint}${type}/`)
     })
 })
